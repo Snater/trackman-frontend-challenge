@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-family: Inter, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
 
@@ -109,8 +109,6 @@
 
 	--text-base: 16px;
 	--text-base--line-height: 140%;
-
-	--font-weight-bold: 600;
 }
 
 .dark {

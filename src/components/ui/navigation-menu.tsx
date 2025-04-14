@@ -59,7 +59,7 @@ function NavigationMenuLink({
 		<NavigationMenuPrimitive.Link
 			data-slot="navigation-menu-link"
 			className={cn(
-				'text-text-neutral-tertiary data-[active=true]:text-text-neutral-onneutral [&:is([data-active=true]&[data-orientation=vertical])]:text-background-brand-default hover:bg-background-default-secondary-hover hover:text-background-brand-default focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 flex flex-col gap-1 rounded-xs px-1.5 py-1 transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 w-max items-center justify-center font-bold text-base',
+				'text-text-neutral-tertiary data-[active=true]:text-text-neutral-onneutral [&:is([data-active=true]&[data-orientation=vertical])]:text-background-brand-default hover:bg-background-default-secondary-hover hover:text-background-brand-default focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 flex flex-col gap-1 rounded-xs px-1.5 py-1 transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 w-max items-center justify-center font-semibold text-base',
 				className
 			)}
 			{...props}
