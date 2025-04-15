@@ -49,6 +49,10 @@
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
 
+	--text-default-default: rgba(30, 30, 30, 1);
+	--background-default-default: rgba(255, 255, 255, 1);
+	--background-default-secondary: rgba(245, 245, 245, 1);
+	--text-default-secondary: rgba(117, 117, 117, 1);
 	--background-brand-default: rgba(44, 44, 44, 1);
 	--text-neutral-tertiary: rgba(118, 118, 118, 1);
 	--text-neutral-onneutral: rgba(243, 243, 243, 1);
@@ -96,6 +100,10 @@
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
 
+	--color-text-default-default: var(--text-default-default);
+	--color-background-background-default: var(--background-default-default);
+	--color-background-default-secondary: var(--background-default-secondary);
+	--color-text-default-secondary: var(--text-default-secondary);
 	--color-background-brand-default: var(--background-brand-default);
 	--color-text-neutral-tertiary: var(--text-neutral-tertiary);
 	--color-text-neutral-onneutral: var(--text-neutral-onneutral);
@@ -112,6 +120,8 @@
 	--breakpoint-2xl: 1536px;
 
 	--radius-xs: 4px;
+
+	--shadow-lg: 0 4px 4px -4px rgb(0 0 0 / 0.1), 0 16px 16px -8px rgb(0 0 0 / 0.1);
 
 	--spacing: 8px;
 
