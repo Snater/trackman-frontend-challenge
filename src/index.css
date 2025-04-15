@@ -53,6 +53,10 @@
 	--text-neutral-tertiary: rgba(118, 118, 118, 1);
 	--text-neutral-onneutral: rgba(243, 243, 243, 1);
 	--background-default-secondary-hover: rgba(230, 230, 230, 1);
+	--background-positive-tertiary: rgba(235, 255, 238, 1);
+	--text-positive-tertiary: rgba(20, 174, 92, 1);
+	--background-danger-tertiary: rgba(254, 233, 231, 1);
+	--text-danger-tertiary: rgba(236, 34, 31, 1);
 }
 
 @theme inline {
@@ -96,6 +100,10 @@
 	--color-text-neutral-tertiary: var(--text-neutral-tertiary);
 	--color-text-neutral-onneutral: var(--text-neutral-onneutral);
 	--color-background-default-secondary-hover: var(--background-default-secondary-hover);
+	--color-background-positive-tertiary: var(--background-positive-tertiary);
+	--color-text-positive-tertiary: var(--text-positive-tertiary);
+	--color-background-danger-tertiary: var(--background-danger-tertiary);
+	--color-text-danger-tertiary: var(--text-danger-tertiary);
 
 	--breakpoint-sm: 640px;
 	--breakpoint-md: 768px;
