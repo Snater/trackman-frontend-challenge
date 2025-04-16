@@ -7,7 +7,7 @@ function Card({className, ...props}: ComponentProps<'div'>) {
 		<div
 			data-slot="card"
 			className={cn(
-				'bg-background-background-default flex flex-col gap-1.5 rounded-sm p-1.5 shadow-sm hover:shadow-lg',
+				'bg-background-background-default flex flex-col gap-1.5 rounded-sm p-1.5 hover:shadow-lg transition',
 				className,
 			)}
 			{...props}
@@ -79,13 +79,13 @@ function CardAddress({children, className, ...props}: ComponentProps<'div'>) {
 		<div
 			data-slot="card-address"
 			className={cn(
-				'gap-0.25 grid grid-cols-[min-content_1fr]',
+				'gap-0.25 grid grid-cols-[min-content_1fr] items-center',
 				className,
 			)}
 			{...props}
 		>
-			<MapPin/>
-			<span className="text-text-default-secondary line-clamp-1">{children}</span>
+			<MapPin className="size-2"/>
+			<span className="line-clamp-1 text-sm text-text-default-secondary">{children}</span>
 		</div>
 	)
 }

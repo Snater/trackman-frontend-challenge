@@ -1,4 +1,5 @@
 import './App.css';
+import Facilities from '@/pages/Facilities';
 import Navbar from '@/components/Navbar';
 import {Route, Routes} from 'react-router';
 
@@ -9,7 +10,7 @@ function App() {
 			<Routes>
 				<Route index element={<></>}/>
 				<Route path="facilities">
-					<Route index element={<></>}/>
+					<Route index element={<Facilities/>}/>
 					<Route path="edit" element={<></>}>
 						<Route path=":id" element={<></>}/>
 					</Route>

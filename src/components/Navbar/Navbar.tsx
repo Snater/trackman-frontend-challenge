@@ -25,7 +25,7 @@ export default function Navbar({
 	}));
 
 	return (
-		<section className="content-center bg-background-brand-default fixed min-h-[56px] w-full z-10">
+		<section className="content-center bg-background-brand-default fixed min-h-[56px] top-0 w-full z-10">
 			<div className="mx-auto px-2 py-1 max-w-full md:container">
 				<DesktopMenu menu={menuWithActive}/>
 				<MobileMenu menu={menuWithActive}/>

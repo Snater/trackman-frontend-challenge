@@ -17,7 +17,7 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	--radius: 0.625rem;
-	--background: oklch(1 0 0);
+	--background: rgba(250, 250, 250, 1);
 	--foreground: oklch(0.145 0 0);
 	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.145 0 0);
@@ -51,6 +51,8 @@
 
 	--text-default-default: rgba(30, 30, 30, 1);
 	--background-default-default: rgba(255, 255, 255, 1);
+	--primary-default: rgba(236, 105, 26, 1);
+	--text-positive-onpositive: rgba(235, 255, 238, 1);
 	--background-default-secondary: rgba(245, 245, 245, 1);
 	--text-default-secondary: rgba(117, 117, 117, 1);
 	--background-brand-default: rgba(44, 44, 44, 1);
@@ -102,6 +104,8 @@
 
 	--color-text-default-default: var(--text-default-default);
 	--color-background-background-default: var(--background-default-default);
+	--color-primary-default: var(--primary-default);
+	--color-text-positive-onpositive: var(--text-positive-onpositive);
 	--color-background-default-secondary: var(--background-default-secondary);
 	--color-text-default-secondary: var(--text-default-secondary);
 	--color-background-brand-default: var(--background-brand-default);

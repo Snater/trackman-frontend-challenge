@@ -50,7 +50,7 @@ export default function FacilityCard({facility}: Props) {
 						<Button size="icon" variant="secondary">
 							<Trash/>
 						</Button>
-						<Button variant="secondary">Edit</Button>
+						<Button size="card" variant="secondary">Edit</Button>
 					</CardActions>
 				</CardFooter>
 			</CardContent>
