@@ -63,6 +63,8 @@
 	--text-positive-tertiary: rgba(20, 174, 92, 1);
 	--background-danger-tertiary: rgba(254, 233, 231, 1);
 	--text-danger-tertiary: rgba(236, 34, 31, 1);
+	--background-modal: rgba(255, 255, 255, 1);
+	--border-default-default: rgba(217, 217, 217, 1);
 }
 
 @theme inline {
@@ -116,6 +118,8 @@
 	--color-text-positive-tertiary: var(--text-positive-tertiary);
 	--color-background-danger-tertiary: var(--background-danger-tertiary);
 	--color-text-danger-tertiary: var(--text-danger-tertiary);
+	--color-background-modal: var(--background-modal);
+	--color-border-default-default: var(--border-default-default);
 
 	--breakpoint-sm: 640px;
 	--breakpoint-md: 768px;
@@ -125,7 +129,8 @@
 
 	--radius-xs: 4px;
 
-	--shadow-lg: 0 4px 4px -4px rgb(0 0 0 / 0.1), 0 16px 16px -8px rgb(0 0 0 / 0.1);
+	--shadow-lg: 0 4px 4px -4px rgba(0, 0, 0, 0.1), 0 16px 16px -8px rgba(0, 0, 0, 0.1);
+	--shadow-xl: 0 4px 4px -4px rgba(12, 12, 13, 0.05), 0 16px 16px -8px rgba(12, 12, 13, 0.1);
 
 	--spacing: 8px;
 

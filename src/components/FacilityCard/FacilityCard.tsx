@@ -1,6 +1,7 @@
 import {
 	Card, CardActions, CardAddress, CardContent, CardFooter, CardHeader, CardImage, CardTitle,
 } from '@/components/ui/card';
+import {Dispatch, SetStateAction} from 'react';
 import type {Facility, WorkingHours} from '@/types.ts';
 import {Badge} from '@/components/ui/badge';
 import {Button} from '@/components/ui/button';
@@ -8,6 +9,7 @@ import {Trash} from 'lucide-react';
 
 type Props = {
 	facility: Facility
+	setConfirmDelete: Dispatch<SetStateAction<Facility | undefined>>
 }
 
 /**
@@ -30,7 +32,7 @@ function isInWorkingHours(timeString: string, workingHours: WorkingHours) {
 	return time >= open && time <= close;
 }
 
-export default function FacilityCard({facility}: Props) {
+export default function FacilityCard({facility, setConfirmDelete}: Props) {
 	const now = new Date().toLocaleTimeString().substring(0, 5);
 	const isOpen = isInWorkingHours(now, facility.workingHours);
 
@@ -47,7 +49,13 @@ export default function FacilityCard({facility}: Props) {
 				<CardFooter>
 					<CardAddress>{facility.address}</CardAddress>
 					<CardActions>
-						<Button size="icon" variant="secondary">
+						<Button
+							onClick={() => {
+								setConfirmDelete(facility);
+							}}
+							size="icon"
+							variant="secondary"
+						>
 							<Trash/>
 						</Button>
 						<Button size="card" variant="secondary">Edit</Button>

@@ -14,19 +14,19 @@ const buttonVariants = cva(
 				menuOutline:
 					'text-text-neutral-tertiary text-base hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 cursor-pointer',
 				primary:
-					'bg-primary-default text-text-positive-onpositive',
+					'bg-primary-default font-semibold text-text-positive-onpositive',
 				secondary:
-					'bg-background-default-secondary text-text-default-default hover:bg-secondary/80',
+					'bg-background-default-secondary font-semibold text-text-default-default hover:bg-secondary/80',
 				ghost:
 					'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
 				link: 'text-primary underline-offset-4 hover:underline',
 			},
 			size: {
 				default: 'h-4.5 px-3 py-1 text-sm',
-				card: 'font-semibold h-4 px-3 py-0.75 text-sm',
+				card: 'h-4 px-3 py-0.75 text-sm',
 				sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
 				lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
-				icon: 'size-4 [&_svg:not([class*="size-"])]:size-2',
+				icon: 'size-4 [&>svg:not([class*="size-"])]:size-2',
 			},
 		},
 		defaultVariants: {
