@@ -22,7 +22,7 @@ export default function DesktopMenu({menu}: Props) {
 							{
 								menu.map((item) => (
 									<NavigationMenuItem key={item.title}>
-										<NavigationMenuLink data-active={item.isActive} href={item.url}>
+										<NavigationMenuLink to={item.url}>
 											{item.title}
 										</NavigationMenuLink>
 									</NavigationMenuItem>

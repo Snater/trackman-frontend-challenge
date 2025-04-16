@@ -1,13 +1,13 @@
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
-import * as React from 'react';
-
+import {ComponentProps} from 'react';
+import {NavLink} from 'react-router';
 import {cn} from '@/lib/utils';
 
 function NavigationMenu({
 	className,
 	children,
 	...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Root>) {
+}: ComponentProps<typeof NavigationMenuPrimitive.Root>) {
 	return (
 		<NavigationMenuPrimitive.Root
 			data-slot="navigation-menu"
@@ -19,13 +19,13 @@ function NavigationMenu({
 		>
 			{children}
 		</NavigationMenuPrimitive.Root>
-	)
+	);
 }
 
 function NavigationMenuList({
 	className,
 	...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.List>) {
+}: ComponentProps<typeof NavigationMenuPrimitive.List>) {
 	return (
 		<NavigationMenuPrimitive.List
 			data-slot="navigation-menu-list"
@@ -35,41 +35,42 @@ function NavigationMenuList({
 			)}
 			{...props}
 		/>
-	)
+	);
 }
 
 function NavigationMenuItem({
 	className,
 	...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Item>) {
+}: ComponentProps<typeof NavigationMenuPrimitive.Item>) {
 	return (
 		<NavigationMenuPrimitive.Item
 			data-slot="navigation-menu-item"
 			className={cn('relative', className)}
 			{...props}
 		/>
-	)
+	);
 }
 
 function NavigationMenuLink({
 	className,
 	...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Link>) {
+}: ComponentProps<typeof NavLink>) {
 	return (
-		<NavigationMenuPrimitive.Link
+		<NavLink
 			data-slot="navigation-menu-link"
-			className={cn(
-				'text-text-neutral-tertiary data-[active=true]:text-text-neutral-onneutral [&:is([data-active=true]&[data-orientation=vertical])]:text-background-brand-default hover:bg-background-default-secondary-hover hover:text-background-brand-default focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 flex flex-col gap-1 rounded-xs px-1.5 py-1 transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 w-max items-center justify-center font-semibold text-base',
+			className={({isActive}) => cn(
+				'text-text-neutral-tertiary hover:bg-background-default-secondary-hover hover:text-background-brand-default flex flex-col gap-1 rounded-xs px-1.5 py-1 transition-all w-max items-center justify-center font-semibold text-base data-[orientation=vertical]:text-background-brand-default data-[orientation=vertical]:hover:bg-transparent data-[orientation=vertical]:hover:text-text-neutral-tertiary [&:is([data-active=true]&[data-orientation=vertical])]:text-background-brand-default',
+				isActive ? 'text-text-neutral-onneutral' : '',
 				className
 			)}
 			{...props}
 		/>
-	)
+	);
 }
 
 export {
 	NavigationMenu,
-	NavigationMenuList,
 	NavigationMenuItem,
 	NavigationMenuLink,
+	NavigationMenuList,
 }

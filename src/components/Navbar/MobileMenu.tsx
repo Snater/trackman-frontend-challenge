@@ -9,17 +9,20 @@ import Logo from './Logo';
 import type {MenuItem} from './types';
 import {Menu} from 'lucide-react';
 import {Button} from '@/components/ui/button';
+import {useState} from 'react';
 
 type Props = {
 	menu: MenuItem[]
 }
 
 export default function MobileMenu({menu}: Props) {
+	const [open, setOpen] = useState(false);
+
 	return (
 		<div className="block md:hidden">
 			<div className="flex items-center justify-between">
 				<Logo/>
-				<Sheet modal={true}>
+				<Sheet modal={true} open={open} onOpenChange={setOpen}>
 					<SheetTrigger asChild className="fixed right-[20px] top-[8px] h-5 width-5 p-0">
 						<Button className="" variant="menuOutline">
 							<Menu className="p-1 size-5"/>
@@ -40,8 +43,8 @@ export default function MobileMenu({menu}: Props) {
 												<NavigationMenuLink
 													data-active={item.isActive}
 													data-orientation="vertical"
-													href={item.url}
-													className="text-background-brand-default hover:bg-transparent hover:text-text-neutral-tertiary"
+													onClick={() => setOpen(false)}
+													to={item.url}
 												>
 													{item.title}
 												</NavigationMenuLink>
