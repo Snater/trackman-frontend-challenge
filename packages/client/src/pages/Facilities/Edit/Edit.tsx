@@ -3,22 +3,13 @@ import {Button} from '@/components/ui/button';
 import type {Facility} from '@/types';
 import FormInput from '@/components/FormInput';
 import FormCheckbox from '@/components/FormCheckbox';
+import {FormSchema} from 'schemas';
 import FormTextarea from '@/components/FormTextarea';
 import facilitiesJson from '@/facilities.json';
 import {useParams} from 'react-router';
 import {useForm} from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
-
-const formSchema = z.object({
-	name: z.string(),
-	address: z.string(),
-	description: z.string(),
-	image: z.string(),
-	openingTime: z.string(),
-	closingTime: z.string(),
-	isDefault: z.string(),
-});
 
 function mapFacilityToFormSchema(facility: Facility) {
 	return {
@@ -38,8 +29,8 @@ export default function Edit() {
 
 	const defaultValues = facility ? mapFacilityToFormSchema(facility as Facility) : {};
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const form = useForm<z.infer<typeof FormSchema>>({
+		resolver: zodResolver(FormSchema),
 		defaultValues,
 	});
 
