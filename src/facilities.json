@@ -12,7 +12,7 @@
 		"id": "2",
 		"name": "Green Valley Golf Club",
 		"address": "123 Fairway Drive, Copenhagen, Denmark",
-		"description": "",
+		"description": "Nestled in the heart of Copenhagen, Green Valley Golf Club offers an 18-hole championship course surrounded by lush greenery and scenic landscapes. With top-tier facilities, a modern clubhouse, and expert coaching programs, it's perfect for both beginners and seasoned golfers.",
 		"image": "/facilities/71413a067c20577b9f298e043fa6070a.jpg",
 		"workingHours": ["00:00", "00:00"],
 		"isDefault": false

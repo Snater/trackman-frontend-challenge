@@ -6,6 +6,7 @@ import type {Facility, WorkingHours} from '@/types.ts';
 import {Badge} from '@/components/ui/badge';
 import {Button} from '@/components/ui/button';
 import {Trash} from 'lucide-react';
+import {useNavigate} from 'react-router';
 
 type Props = {
 	facility: Facility
@@ -33,6 +34,8 @@ function isInWorkingHours(timeString: string, workingHours: WorkingHours) {
 }
 
 export default function FacilityCard({facility, setConfirmDelete}: Props) {
+	const navigate = useNavigate();
+
 	const now = new Date().toLocaleTimeString().substring(0, 5);
 	const isOpen = isInWorkingHours(now, facility.workingHours);
 
@@ -58,7 +61,13 @@ export default function FacilityCard({facility, setConfirmDelete}: Props) {
 						>
 							<Trash/>
 						</Button>
-						<Button size="card" variant="secondary">Edit</Button>
+						<Button
+							onClick={() => navigate(`edit/${facility.id}`)}
+							size="card"
+							variant="secondary"
+						>
+							Edit
+						</Button>
 					</CardActions>
 				</CardFooter>
 			</CardContent>

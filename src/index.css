@@ -18,7 +18,7 @@
 	-moz-osx-font-smoothing: grayscale;
 	--radius: 0.625rem;
 	--background: rgba(250, 250, 250, 1);
-	--foreground: oklch(0.145 0 0);
+	--foreground: rgba(30, 30, 30, 1);
 	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.145 0 0);
 	--popover: oklch(1 0 0);
@@ -65,6 +65,9 @@
 	--text-danger-tertiary: rgba(236, 34, 31, 1);
 	--background-modal: rgba(255, 255, 255, 1);
 	--border-default-default: rgba(217, 217, 217, 1);
+	--background-surface: rgba(255, 255, 255, 1);
+	--border-disabled-default: rgba(179, 179, 179, 1);
+	--border-default: rgba(156, 163, 175, 1);
 }
 
 @theme inline {
@@ -105,7 +108,7 @@
 	--color-sidebar-ring: var(--sidebar-ring);
 
 	--color-text-default-default: var(--text-default-default);
-	--color-background-background-default: var(--background-default-default);
+	--color-background-default-default: var(--background-default-default);
 	--color-primary-default: var(--primary-default);
 	--color-text-positive-onpositive: var(--text-positive-onpositive);
 	--color-background-default-secondary: var(--background-default-secondary);
@@ -120,6 +123,9 @@
 	--color-text-danger-tertiary: var(--text-danger-tertiary);
 	--color-background-modal: var(--background-modal);
 	--color-border-default-default: var(--border-default-default);
+	--color-background-surface: var(--background-surface);
+	--color-border-disabled-default: var(--border-disabled-default);
+	--color-border-default: var(--border-default);
 
 	--breakpoint-sm: 640px;
 	--breakpoint-md: 768px;
@@ -129,6 +135,7 @@
 
 	--radius-xs: 4px;
 
+	--shadow-xs: 0 1px 4px 0 rgba(12, 12, 13, 0.05);
 	--shadow-lg: 0 4px 4px -4px rgba(0, 0, 0, 0.1), 0 16px 16px -8px rgba(0, 0, 0, 0.1);
 	--shadow-xl: 0 4px 4px -4px rgba(12, 12, 13, 0.05), 0 16px 16px -8px rgba(12, 12, 13, 0.1);
 
@@ -177,7 +184,19 @@
 		@apply border-border outline-ring/50;
 	}
 
-  body {
+	body {
 		@apply bg-background min-h-screen text-foreground;
+	}
+
+	h1 {
+		@apply font-semibold leading-[120%] mb-2 px-2 text-2xl tracking-[-0.02em];
+	}
+
+	h2 {
+		@apply font-semibold leading-[140%] mb-1.5;
+	}
+
+	form {
+		@apply p-2;
 	}
 }
