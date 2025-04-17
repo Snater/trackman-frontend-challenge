@@ -2,13 +2,18 @@ import {Button} from '@/components/ui/button';
 import type {Facility} from '@/types';
 import FacilityCard from '@/components/FacilityCard';
 import FacilityDeleteDialog from '@/components/FacilityDeleteDialog';
-import facilities from '@/facilities.json';
+import useFacilitiesContext from '@/components/FacilitiesContext';
 import {useNavigate} from 'react-router';
 import {useState} from 'react';
 
 export default function Facilities() {
 	const [confirmDelete, setConfirmDelete] = useState<Facility>();
 	const navigate = useNavigate();
+	const {facilities} = useFacilitiesContext();
+
+	if (!facilities) {
+		return null;
+	}
 
 	return (
 		<>

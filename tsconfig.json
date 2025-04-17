@@ -3,6 +3,7 @@
 	"files": [],
 	"references": [
 		{"path": "./packages/client"},
-		{"path": "./packages/schemas"}
+		{"path": "./packages/schemas"},
+		{"path": "./packages/server"}
 	]
 }

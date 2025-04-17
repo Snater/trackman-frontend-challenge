@@ -5,11 +5,11 @@ import FormInput from '@/components/FormInput';
 import FormCheckbox from '@/components/FormCheckbox';
 import {FormSchema} from 'schemas';
 import FormTextarea from '@/components/FormTextarea';
-import facilitiesJson from '@/facilities.json';
 import {useParams} from 'react-router';
 import {useForm} from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
+import useFacilitiesContext from '@/components/FacilitiesContext';
 
 function mapFacilityToFormSchema(facility: Facility) {
 	return {
@@ -25,7 +25,8 @@ function mapFacilityToFormSchema(facility: Facility) {
 
 export default function Edit() {
 	const {id} = useParams();
-	const facility = facilitiesJson.filter(facility => facility.id === id)[0];
+	const {facilities} = useFacilitiesContext();
+	const facility = facilities?.filter(facility => facility.id === id)[0];
 
 	const defaultValues = facility ? mapFacilityToFormSchema(facility as Facility) : {};
 
