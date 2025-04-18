@@ -1,7 +1,7 @@
 'use client'
 
 import DesktopMenu from './DesktopMenu';
-import type {MenuItem} from '@/components/Navbar/types';
+import type {MenuItem} from './types';
 import MobileMenu from './MobileMenu';
 
 type Props = {

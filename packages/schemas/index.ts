@@ -1,11 +1,17 @@
 import {z} from 'zod';
 
-export const FormSchema = z.object({
+const WorkingHoursSchema = z.tuple([z.string(), z.string()]);
+
+export type WorkingHours = z.infer<typeof WorkingHoursSchema>;
+
+export const FacilitySchema = z.object({
+	id: z.string().optional(),
 	name: z.string(),
 	address: z.string(),
 	description: z.string(),
 	image: z.string(),
-	openingTime: z.string(),
-	closingTime: z.string(),
-	isDefault: z.string(),
+	workingHours: WorkingHoursSchema,
+	isDefault: z.coerce.boolean(),
 });
+
+export type Facility = z.infer<typeof FacilitySchema>;

@@ -1,4 +1,4 @@
-import type {Facility} from '@/types';
+import type {Facility} from 'schemas';
 import {createContext} from 'react';
 
 export interface FacilitiesContextType {

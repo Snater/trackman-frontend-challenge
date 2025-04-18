@@ -1,5 +1,5 @@
 import FacilitiesContext from './FacilitiesContext';
-import type {Facility} from '@/types';
+import type {Facility} from 'schemas';
 import {PropsWithChildren} from 'react';
 import {useQuery} from '@tanstack/react-query';
 

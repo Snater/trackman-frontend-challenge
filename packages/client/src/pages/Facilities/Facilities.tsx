@@ -1,5 +1,5 @@
 import {Button} from '@/components/ui/button';
-import type {Facility} from '@/types';
+import type {Facility} from 'schemas';
 import FacilityCard from '@/components/FacilityCard';
 import FacilityDeleteDialog from '@/components/FacilityDeleteDialog';
 import useFacilitiesContext from '@/components/FacilitiesContext';

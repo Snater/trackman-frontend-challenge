@@ -1,46 +1,72 @@
+import {type DefaultError, useMutation, useQueryClient} from '@tanstack/react-query';
+import {type Facility, FacilitySchema} from 'schemas';
 import {Form, FormField} from '@/components/ui/form';
+import {useNavigate, useParams} from 'react-router';
 import {Button} from '@/components/ui/button';
-import type {Facility} from '@/types';
 import FormInput from '@/components/FormInput';
 import FormCheckbox from '@/components/FormCheckbox';
-import {FormSchema} from 'schemas';
 import FormTextarea from '@/components/FormTextarea';
-import {useParams} from 'react-router';
-import {useForm} from 'react-hook-form';
-import {z} from 'zod';
-import {zodResolver} from '@hookform/resolvers/zod';
+import {Input} from '@/components/ui/input';
 import useFacilitiesContext from '@/components/FacilitiesContext';
-
-function mapFacilityToFormSchema(facility: Facility) {
-	return {
-		name: facility.name,
-		address: facility.address,
-		description: facility.description,
-		image: facility.image,
-		openingTime: facility.workingHours[0],
-		closingTime: facility.workingHours[1],
-		isDefault: facility.isDefault,
-	}
-}
+import {useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
 
 export default function Edit() {
+	const navigate = useNavigate();
 	const {id} = useParams();
+	const queryClient = useQueryClient();
 	const {facilities} = useFacilitiesContext();
 	const facility = facilities?.filter(facility => facility.id === id)[0];
 
-	const defaultValues = facility ? mapFacilityToFormSchema(facility as Facility) : {};
+	const form = useForm<Facility>({
+		resolver: zodResolver(FacilitySchema),
+		defaultValues: facility ?? {
+			name: '',
+			address: '',
+			description: '',
+			image: '',
+			workingHours: ['', ''],
+		},
+	});
 
-	const form = useForm<z.infer<typeof FormSchema>>({
-		resolver: zodResolver(FormSchema),
-		defaultValues,
+	const {mutate} = useMutation<null, DefaultError, Facility>({
+		mutationFn: async (values) => {
+			await fetch(
+				`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/facility`,
+				{
+					body: JSON.stringify({...values}),
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					method: 'POST',
+					mode: 'cors',
+				}
+			);
+
+			return null;
+		},
+		onSuccess: async () => {
+			await queryClient.refetchQueries({queryKey: ['facilities']});
+			navigate('/facilities');
+		},
 	});
 
 	return (
 		<>
-			<h1>Edit Facility</h1>
+			<h1>{id ? 'Edit Facility' : 'Add Facility'}</h1>
 			<Form {...form}>
-				<form className="bg-background-default-default rounded-md shadow-xs">
+				<form
+					className="bg-background-default-default rounded-md shadow-xs"
+					onSubmit={form.handleSubmit(values => mutate(values))}
+				>
 					<h2>Facility Information</h2>
+					<FormField
+						control={form.control}
+						name="id"
+						render={({field}) => (
+							<Input {...field} type="hidden"/>
+						)}
+					/>
 					<FormField
 						control={form.control}
 						name="name"
@@ -64,7 +90,7 @@ export default function Edit() {
 					/>
 					<FormField
 						control={form.control}
-						name="address"
+						name="image"
 						render={({field}) => (
 							<FormInput field={field} label="Cover Image URL" required/>
 						)}
@@ -84,22 +110,22 @@ export default function Edit() {
 					<div className="flex gap-1.25 mb-1">
 						<FormField
 							control={form.control}
-							name="openingTime"
+							name="workingHours.0"
 							render={({field}) => (
 								<FormInput field={field} label="Opening Time" required/>
 							)}
 						/>
 						<FormField
 							control={form.control}
-							name="closingTime"
+							name="workingHours.1"
 							render={({field}) => (
 								<FormInput field={field} label="Closing Time" required/>
 							)}
 						/>
 					</div>
 					<div className="flex gap-1.25 justify-end">
-						<Button variant="secondary">Cancel</Button>
-						<Button type="submit" variant="primary">Create Facility</Button>
+						<Button variant="secondary" onClick={() => navigate('/facilities')}>Cancel</Button>
+						<Button type="submit" variant="primary">{id ? 'Update Facility' : 'Create Facility'}</Button>
 					</div>
 				</form>
 			</Form>

@@ -2,7 +2,7 @@ import {
 	Card, CardActions, CardAddress, CardContent, CardFooter, CardHeader, CardImage, CardTitle,
 } from '@/components/ui/card';
 import {Dispatch, SetStateAction} from 'react';
-import type {Facility, WorkingHours} from '@/types.ts';
+import type {Facility, WorkingHours} from 'schemas';
 import {Badge} from '@/components/ui/badge';
 import {Button} from '@/components/ui/button';
 import {Trash} from 'lucide-react';
