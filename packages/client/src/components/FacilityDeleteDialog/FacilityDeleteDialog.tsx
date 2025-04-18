@@ -1,3 +1,4 @@
+import {type DefaultError, useMutation, useQueryClient} from '@tanstack/react-query';
 import {
 	Dialog,
 	DialogContent,
@@ -6,9 +7,9 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from '@/components/ui/dialog';
-import {Dispatch, SetStateAction} from 'react';
+import {Dispatch, SetStateAction, useCallback} from 'react';
 import {Button} from '@/components/ui/button';
-import type {Facility} from '@/types';
+import type {Facility} from 'schemas';
 
 type Props = {
 	confirmDelete?: Facility
@@ -16,12 +17,43 @@ type Props = {
 }
 
 export default function FacilityDeleteDialog({confirmDelete, setConfirmDelete}: Props) {
+	const queryClient = useQueryClient();
+
+	const {mutate} = useMutation<null, DefaultError, string>({
+		mutationFn: async (id) => {
+			await fetch(
+				`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/facility`,
+				{
+					body: JSON.stringify({id}),
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					method: 'DELETE',
+					mode: 'cors',
+				}
+			);
+
+			return null;
+		},
+		onSuccess: () => {
+			queryClient.refetchQueries({queryKey: ['facilities']});
+			setConfirmDelete(undefined);
+		},
+	});
 
 	const handleOpenChange = (open: boolean) => {
 		if (!open) {
 			setConfirmDelete(undefined);
 		}
 	}
+
+	const handleDelete = useCallback(() => {
+		if (!confirmDelete?.id) {
+			return;
+		}
+
+		mutate(confirmDelete.id);
+	}, [confirmDelete, mutate]);
 
 	return (
 		<Dialog open={confirmDelete !== undefined} onOpenChange={handleOpenChange}>
@@ -35,7 +67,7 @@ export default function FacilityDeleteDialog({confirmDelete, setConfirmDelete}: 
 				</DialogDescription>
 				<DialogFooter>
 					<Button onClick={() => setConfirmDelete(undefined)} variant="secondary">Cancel</Button>
-					<Button variant="primary">Yes, Delete</Button>
+					<Button onClick={handleDelete} variant="primary">Yes, Delete</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

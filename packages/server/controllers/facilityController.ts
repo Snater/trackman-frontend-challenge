@@ -27,3 +27,19 @@ export function facility(req: Request, res: Response) {
 
 	res.json(updatedFacilities);
 }
+
+export function facilityDelete(req: Request, res: Response) {
+	const {id} = req.body;
+
+	const fileContent = fs.readFileSync(path.join(__dirname, '..', 'FACILITIES.json'), 'utf8');
+	const facilities = JSON.parse(fileContent) as Facility[];
+
+	const updatedFacilities = facilities.filter(facility => facility.id !== id);
+
+	fs.writeFileSync(
+		path.join(__dirname, '..', 'FACILITIES.json'),
+		JSON.stringify(updatedFacilities, null, 2)
+	);
+
+	res.json(updatedFacilities);
+}
