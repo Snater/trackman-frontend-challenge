@@ -1,5 +1,5 @@
+import {MapPin, Star} from 'lucide-react';
 import {ComponentProps} from 'react';
-import {MapPin} from 'lucide-react';
 import {cn} from '@/lib/utils';
 
 function Card({className, ...props}: ComponentProps<'div'>) {
@@ -15,11 +15,11 @@ function Card({className, ...props}: ComponentProps<'div'>) {
 	)
 }
 
-function CardImage({className, src, ...props}: ComponentProps<'div'> & {src: string}) {
+function CardImage({children, className, src, ...props}: ComponentProps<'div'> & {src: string}) {
 	return (
 		<div
 			data-slot="card-image"
-			className={cn('aspect-[324/176] rounded-xs overflow-hidden', className)}
+			className={cn('aspect-[324/176] relative rounded-xs overflow-hidden', className)}
 			{...props}
 		>
 			<img
@@ -27,8 +27,19 @@ function CardImage({className, src, ...props}: ComponentProps<'div'> & {src: str
 				alt=""
 				className="h-full object-center object-cover w-full"
 			/>
+			{children}
 		</div>
 	)
+}
+
+function CardDefaultIcon() {
+	return (
+		<div
+			className="absolute backdrop-blur-[2.5px] bg-is-default-icon-bg flex items-center justify-center left-1 rounded-full size-4 top-1"
+		>
+			<Star className="text-background-default-default size-2"/>
+		</div>
+	);
 }
 
 function CardHeader({className, ...props}: ComponentProps<'div'>) {
@@ -108,6 +119,7 @@ export {
 	CardActions,
 	CardAddress,
 	CardContent,
+	CardDefaultIcon,
 	CardFooter,
 	CardHeader,
 	CardImage,

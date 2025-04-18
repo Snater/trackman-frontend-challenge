@@ -1,5 +1,13 @@
 import {
-	Card, CardActions, CardAddress, CardContent, CardFooter, CardHeader, CardImage, CardTitle,
+	Card,
+	CardActions,
+	CardAddress,
+	CardContent,
+	CardDefaultIcon,
+	CardFooter,
+	CardHeader,
+	CardImage,
+	CardTitle,
 } from '@/components/ui/card';
 import {Dispatch, SetStateAction} from 'react';
 import type {Facility, WorkingHours} from 'schemas';
@@ -41,7 +49,9 @@ export default function FacilityCard({facility, setConfirmDelete}: Props) {
 
 	return (
 		<Card>
-			<CardImage src={facility.image}/>
+			<CardImage src={facility.image}>
+				{facility.isDefault && <CardDefaultIcon/>}
+			</CardImage>
 			<CardContent>
 				<CardHeader>
 					<CardTitle>

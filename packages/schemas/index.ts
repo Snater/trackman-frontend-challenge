@@ -11,7 +11,7 @@ export const FacilitySchema = z.object({
 	description: z.string(),
 	image: z.string(),
 	workingHours: WorkingHoursSchema,
-	isDefault: z.coerce.boolean(),
+	isDefault: z.boolean(),
 });
 
 export type Facility = z.infer<typeof FacilitySchema>;

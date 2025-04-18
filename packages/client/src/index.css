@@ -68,6 +68,7 @@
 	--background-surface: rgba(255, 255, 255, 1);
 	--border-disabled-default: rgba(179, 179, 179, 1);
 	--border-default: rgba(156, 163, 175, 1);
+	--is-default-icon-bg: rgba(151, 81, 2, 0.75);
 }
 
 @theme inline {
@@ -126,6 +127,7 @@
 	--color-background-surface: var(--background-surface);
 	--color-border-disabled-default: var(--border-disabled-default);
 	--color-border-default: var(--border-default);
+	--color-is-default-icon-bg: var(--is-default-icon-bg);
 
 	--breakpoint-sm: 640px;
 	--breakpoint-md: 768px;

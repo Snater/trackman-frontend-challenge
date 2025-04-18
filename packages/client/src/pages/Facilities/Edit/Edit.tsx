@@ -26,6 +26,7 @@ export default function Edit() {
 			description: '',
 			image: '',
 			workingHours: ['', ''],
+			isDefault: facilities?.length === 0,
 		},
 	});
 
@@ -101,6 +102,7 @@ export default function Edit() {
 						render={({field}) => (
 							<FormCheckbox
 								description="Setting this facility as default will override the currently marked default facility."
+								disabled={facilities?.length === 0}
 								field={field}
 								label="Default Facility"
 							/>

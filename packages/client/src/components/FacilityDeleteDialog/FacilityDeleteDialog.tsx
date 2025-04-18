@@ -16,7 +16,7 @@ type Props = {
 	setConfirmDelete: Dispatch<SetStateAction<Facility | undefined>>
 }
 
-export default function FacilityDeleteDialog({confirmDelete, setConfirmDelete}: Props) {
+export default function FacilityDeleteDialog({confirmDelete: facility, setConfirmDelete}: Props) {
 	const queryClient = useQueryClient();
 
 	const {mutate} = useMutation<null, DefaultError, string>({
@@ -48,22 +48,22 @@ export default function FacilityDeleteDialog({confirmDelete, setConfirmDelete}: 
 	}
 
 	const handleDelete = useCallback(() => {
-		if (!confirmDelete?.id) {
+		if (!facility?.id) {
 			return;
 		}
 
-		mutate(confirmDelete.id);
-	}, [confirmDelete, mutate]);
+		mutate(facility.id);
+	}, [facility, mutate]);
 
 	return (
-		<Dialog open={confirmDelete !== undefined} onOpenChange={handleOpenChange}>
+		<Dialog open={facility !== undefined} onOpenChange={handleOpenChange}>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>Delete Facility</DialogTitle>
 				</DialogHeader>
 				<DialogDescription>
 					Are you sure you want to delete this facility? This action cannot be undone.<br/>
-					Facility: <span className="font-semibold">{confirmDelete?.name}</span>
+					Facility: <span className="font-semibold">{facility?.name}</span>
 				</DialogDescription>
 				<DialogFooter>
 					<Button onClick={() => setConfirmDelete(undefined)} variant="secondary">Cancel</Button>
