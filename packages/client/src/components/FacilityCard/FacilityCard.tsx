@@ -13,7 +13,7 @@ import {Dispatch, SetStateAction} from 'react';
 import type {Facility, WorkingHours} from 'schemas';
 import {Badge} from '@/components/ui/badge';
 import {Button} from '@/components/ui/button';
-import {Trash} from 'lucide-react';
+import DeleteIcon from '@/components/DeleteIcon';
 import {useNavigate} from 'react-router';
 
 type Props = {
@@ -69,7 +69,7 @@ export default function FacilityCard({facility, setConfirmDelete}: Props) {
 							size="icon"
 							variant="secondary"
 						>
-							<Trash/>
+							<DeleteIcon/>
 						</Button>
 						<Button
 							onClick={() => navigate(`edit/${facility.id}`)}
