@@ -6,9 +6,9 @@ const badgeVariants = cva(
 		variants: {
 			variant: {
 				open:
-					'bg-background-positive-tertiary text-text-positive-tertiary',
+					'bg-positive text-positive-foreground',
 				closed:
-					'bg-background-danger-tertiary text-text-danger-tertiary',
+					'bg-danger text-danger-foreground',
 			},
 		},
 	}

@@ -59,8 +59,8 @@ function NavigationMenuLink({
 		<NavLink
 			data-slot="navigation-menu-link"
 			className={({isActive}) => cn(
-				'text-text-neutral-tertiary hover:bg-background-default-secondary-hover hover:text-background-brand-default flex flex-col gap-1 rounded-xs px-1.5 py-1 transition-all w-max items-center justify-center font-semibold text-base data-[orientation=vertical]:text-background-brand-default data-[orientation=vertical]:hover:bg-transparent data-[orientation=vertical]:hover:text-text-neutral-tertiary [&:is([data-active=true]&[data-orientation=vertical])]:text-background-brand-default',
-				isActive ? 'text-text-neutral-onneutral' : '',
+				'text-accent-foreground hover:bg-secondary-hover hover:text-accent flex flex-col gap-1 rounded-sm px-1.5 py-1 transition-all w-max items-center justify-center font-semibold text-base data-[orientation=vertical]:text-accent data-[orientation=vertical]:hover:bg-transparent data-[orientation=vertical]:hover:text-accent-foreground [&:is([data-active=true]&[data-orientation=vertical])]:text-accent',
+				{'text-accent-foreground-active' : isActive},
 				className
 			)}
 			{...props}
@@ -73,4 +73,4 @@ export {
 	NavigationMenuItem,
 	NavigationMenuLink,
 	NavigationMenuList,
-}
+};

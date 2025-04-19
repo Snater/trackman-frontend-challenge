@@ -7,7 +7,7 @@ function Card({className, ...props}: ComponentProps<'div'>) {
 		<div
 			data-slot="card"
 			className={cn(
-				'bg-background-default-default flex flex-col gap-1.5 rounded-sm p-1.5 hover:shadow-lg transition',
+				'bg-card text-card-foreground flex flex-col gap-1.5 rounded-md p-1.5 hover:shadow-lg transition',
 				className,
 			)}
 			{...props}
@@ -19,7 +19,7 @@ function CardImage({children, className, src, ...props}: ComponentProps<'div'> &
 	return (
 		<div
 			data-slot="card-image"
-			className={cn('aspect-[324/176] relative rounded-xs overflow-hidden', className)}
+			className={cn('aspect-[324/176] relative rounded-sm overflow-hidden', className)}
 			{...props}
 		>
 			<img
@@ -35,9 +35,9 @@ function CardImage({children, className, src, ...props}: ComponentProps<'div'> &
 function CardDefaultIcon() {
 	return (
 		<div
-			className="absolute backdrop-blur-[2.5px] bg-is-default-icon-bg flex items-center justify-center left-1 rounded-full size-4 top-1"
+			className="absolute backdrop-blur-[2.5px] bg-primary-accent flex items-center justify-center left-1 rounded-full size-4 top-1"
 		>
-			<Star className="text-background-default-default size-2"/>
+			<Star className="text-card size-2"/>
 		</div>
 	);
 }
@@ -96,7 +96,7 @@ function CardAddress({children, className, ...props}: ComponentProps<'div'>) {
 			{...props}
 		>
 			<MapPin className="size-2"/>
-			<span className="line-clamp-1 text-sm text-text-default-secondary">{children}</span>
+			<span className="line-clamp-1 text-sm text-secondary-foreground">{children}</span>
 		</div>
 	)
 }
@@ -124,4 +124,4 @@ export {
 	CardHeader,
 	CardImage,
 	CardTitle,
-}
+};

@@ -57,7 +57,7 @@ export default function Edit() {
 			<h1>{id ? 'Edit Facility' : 'Add Facility'}</h1>
 			<Form {...form}>
 				<form
-					className="bg-background-default-default rounded-md shadow-xs"
+					className="bg-card rounded-md shadow-xs"
 					onSubmit={form.handleSubmit(values => mutate(values))}
 				>
 					<h2>Facility Information</h2>

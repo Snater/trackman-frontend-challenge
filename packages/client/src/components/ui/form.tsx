@@ -83,14 +83,14 @@ function FormItem({className, ...props}: ComponentProps<'div'>) {
 	)
 }
 
-function FormLabel({className, ...props}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+function FormLabel({className, ...props}: ComponentProps<typeof LabelPrimitive.Root>) {
 	const {error, formItemId} = useFormField();
 
 	return (
 		<Label
 			data-slot="form-label"
 			data-error={!!error}
-			className={cn('data-[error=true]:text-destructive', className)}
+			className={cn('data-[error=true]:text-danger-foreground', className)}
 			htmlFor={formItemId}
 			{...props}
 		/>
@@ -122,7 +122,7 @@ function FormDescription({className, ...props}: ComponentProps<'p'>) {
 		<p
 			data-slot="form-description"
 			id={formDescriptionId}
-			className={cn('text-text-default-secondary text-xs', className)}
+			className={cn('text-secondary-foreground text-xs', className)}
 			{...props}
 		/>
 	);
@@ -140,7 +140,7 @@ function FormMessage({className, ...props}: ComponentProps<'p'>) {
 		<p
 			data-slot="form-message"
 			id={formMessageId}
-			className={cn('text-destructive text-sm', className)}
+			className={cn('text-danger-foreground text-sm', className)}
 			{...props}
 		>
 			{body}
