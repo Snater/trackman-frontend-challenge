@@ -1,6 +1,7 @@
 import {type DefaultError, useMutation, useQueryClient} from '@tanstack/react-query';
 import {type Facility, FacilitySchema} from 'schemas';
 import {Form, FormField} from '@/components/ui/form';
+import {useEffect, useMemo} from 'react';
 import {useNavigate, useParams} from 'react-router';
 import {Button} from '@/components/ui/button';
 import FormInput from '@/components/FormInput';
@@ -18,17 +19,26 @@ export default function Edit() {
 	const {facilities} = useFacilitiesContext();
 	const facility = facilities?.filter(facility => facility.id === id)[0];
 
-	const form = useForm<Facility>({
+	const defaultValues = useMemo((): Facility => facility ?? {
+		id: '',
+		name: '',
+		address: '',
+		description: '',
+		image: '',
+		workingHours: ['', ''],
+		isDefault: facilities?.length === 0,
+	}, [facilities, facility]);
+
+	const {reset, ...form} = useForm<Facility>({
 		resolver: zodResolver(FacilitySchema),
-		defaultValues: facility ?? {
-			name: '',
-			address: '',
-			description: '',
-			image: '',
-			workingHours: ['', ''],
-			isDefault: facilities?.length === 0,
-		},
+		defaultValues,
 	});
+
+	useEffect(() => {
+		if (facilities) {
+			reset(defaultValues);
+		}
+	}, [defaultValues, facilities, reset]);
 
 	const {mutate} = useMutation<null, DefaultError, Facility>({
 		mutationFn: async (values) => {
@@ -55,7 +65,7 @@ export default function Edit() {
 	return (
 		<>
 			<h1>{id ? 'Edit Facility' : 'Add Facility'}</h1>
-			<Form {...form}>
+			<Form reset={reset} {...form}>
 				<form
 					className="bg-card rounded-md shadow-xs"
 					onSubmit={form.handleSubmit(values => mutate(values))}
