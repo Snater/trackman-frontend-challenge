@@ -1,6 +1,6 @@
+import FacilityCard, {FacilityCardSkeleton} from '@/components/FacilityCard';
 import {Button} from '@/components/ui/button';
 import type {Facility} from 'schemas';
-import FacilityCard from '@/components/FacilityCard';
 import FacilityDeleteDialog from '@/components/FacilityDeleteDialog';
 import useFacilitiesContext from '@/components/FacilitiesContext';
 import {useNavigate} from 'react-router';
@@ -11,10 +11,6 @@ export default function Facilities() {
 	const navigate = useNavigate();
 	const {facilities} = useFacilitiesContext();
 
-	if (!facilities) {
-		return null;
-	}
-
 	return (
 		<>
 			<h1 className="sr-only">Facilities</h1>
@@ -24,7 +20,17 @@ export default function Facilities() {
 				</div>
 				<div className="grid gap-1.5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 					{
-						facilities.map(facility => (
+						!facilities && (
+							[...Array(8)].map((_, i) => (
+								<FacilityCardSkeleton
+									className="nth-[n+4]:hidden md:nth-[n]:flex md:nth-[n+5]:hidden lg:nth-[n]:flex lg:nth-[n+7]:hidden 2xl:nth-[n]:flex"
+									key={i}
+								/>
+							))
+						)
+					}
+					{
+						facilities && facilities.map(facility => (
 							<FacilityCard
 								facility={facility as Facility}
 								key={facility.id}
