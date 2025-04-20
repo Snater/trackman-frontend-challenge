@@ -1,6 +1,9 @@
 import {z} from 'zod';
 
-const WorkingHoursSchema = z.tuple([z.string(), z.string()]);
+const WorkingHoursSchema = z.tuple([
+	z.string().regex(/[0-9]{1,2}:[0-9]{2}/).transform(value => value.padStart(5, '0')),
+	z.string().regex(/[0-9]{1,2}:[0-9]{2}/).transform(value => value.padStart(5, '0'))
+]);
 
 export type WorkingHours = z.infer<typeof WorkingHoursSchema>;
 

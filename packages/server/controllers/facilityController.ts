@@ -23,7 +23,7 @@ export function facility(req: Request, res: Response) {
 		});
 	}
 
-	facilities = (data.id === undefined)
+	facilities = (data.id === '')
 		? [...facilities, {...data, id: uniqid()}]
 		: facilities.map(facility => facility.id === data.id ? data : facility);
 
