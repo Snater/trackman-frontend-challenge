@@ -24,11 +24,11 @@ export default function MobileMenu({menu}: Props) {
 				<Logo/>
 				<Sheet modal={true} open={open} onOpenChange={setOpen}>
 					<SheetTrigger asChild className="fixed right-[20px] top-[8px] h-5 width-5 p-0">
-						<Button className="" variant="menuOutline">
+						<Button aria-label="Navigation Menu" className="" variant="menuOutline">
 							<Menu className="p-1 size-5"/>
 						</Button>
 					</SheetTrigger>
-					<SheetContent className="overflow-y-auto">
+					<SheetContent aria-describedby={undefined} className="overflow-y-auto">
 						<SheetHeader hidden>
 							<SheetTitle>
 								Menu

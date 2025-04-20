@@ -17,9 +17,10 @@ export default function Facilities() {
 
 	return (
 		<>
+			<h1 className="sr-only">Facilities</h1>
 			<div className="flex flex-col">
 				<div className="flex justify-end">
-					<Button onClick={() => navigate('add')} variant="primary">Create Facility</Button>
+					<Button className="w-full sm:w-auto" onClick={() => navigate('add')} variant="primary">Create Facility</Button>
 				</div>
 				<div className="grid gap-1.5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 					{

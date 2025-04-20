@@ -40,6 +40,7 @@ export default function FacilityCard({facility, setConfirmDelete}: Props) {
 					<CardAddress>{facility.address}</CardAddress>
 					<CardActions>
 						<Button
+							aria-label="Delete"
 							onClick={() => {
 								setConfirmDelete(facility);
 							}}
