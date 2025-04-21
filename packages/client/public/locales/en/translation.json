@@ -37,6 +37,7 @@
 			"button": {
 				"createFacility": "Create Facility"
 			},
+			"empty": "There are no facilities yet.",
 			"page": {
 				"add": {
 					"title": "Add Facility"

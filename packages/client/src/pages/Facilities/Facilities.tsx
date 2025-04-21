@@ -22,28 +22,38 @@ export default function Facilities() {
 						{t('page.facilities.button.createFacility')}
 					</Button>
 				</div>
-				<div className="grid gap-1.5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-					{
-						!facilities && (
-							[...Array(8)].map((_, i) => (
-								<FacilityCardSkeleton
-									className="nth-[n+4]:hidden md:nth-[n]:flex md:nth-[n+5]:hidden lg:nth-[n]:flex lg:nth-[n+7]:hidden 2xl:nth-[n]:flex"
-									key={i}
-								/>
-							))
-						)
-					}
-					{
-						facilities && facilities.map(facility => (
-							<FacilityCard
-								facility={facility as Facility}
-								key={facility.id}
-								setConfirmDelete={setConfirmDelete}
-							/>
-						))
-					}
+				{
+					facilities && facilities.length === 0 && (
+						<div className="mt-12 text-center w-full">{t('page.facilities.empty')}</div>
+					)
+				}
+				{
+					!facilities || facilities.length > 0 && (
+						<div className="grid gap-1.5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+							{
+								facilities
+									? (
+										facilities.map(facility => (
+											<FacilityCard
+												facility={facility as Facility}
+												key={facility.id}
+												setConfirmDelete={setConfirmDelete}
+											/>
+										))
+									)
+									: (
+										[...Array(8)].map((_, i) => (
+											<FacilityCardSkeleton
+												className="nth-[n+4]:hidden md:nth-[n]:flex md:nth-[n+5]:hidden lg:nth-[n]:flex lg:nth-[n+7]:hidden 2xl:nth-[n]:flex"
+												key={i}
+											/>
+										))
+									)
+							}
+						</div>
+					)
+				}
 				</div>
-			</div>
 			<FacilityDeleteDialog confirmDelete={confirmDelete} setConfirmDelete={setConfirmDelete}/>
 		</>
 	);
