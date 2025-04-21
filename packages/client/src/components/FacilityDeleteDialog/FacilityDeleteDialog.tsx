@@ -8,6 +8,7 @@ import {
 	DialogTitle,
 } from '@/components/ui/dialog';
 import {Dispatch, SetStateAction, useCallback} from 'react';
+import {Trans, useTranslation} from 'react-i18next';
 import {Button} from '@/components/ui/button';
 import type {Facility} from 'schemas';
 
@@ -17,6 +18,7 @@ type Props = {
 }
 
 export default function FacilityDeleteDialog({confirmDelete: facility, setConfirmDelete}: Props) {
+	const {t} = useTranslation();
 	const queryClient = useQueryClient();
 
 	const {mutate} = useMutation<null, DefaultError, string>({
@@ -59,15 +61,20 @@ export default function FacilityDeleteDialog({confirmDelete: facility, setConfir
 		<Dialog open={facility !== undefined} onOpenChange={handleOpenChange}>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>Delete Facility</DialogTitle>
+					<DialogTitle>{t('facility.deleteDialog.title')}</DialogTitle>
 				</DialogHeader>
 				<DialogDescription>
-					Are you sure you want to delete this facility? This action cannot be undone.<br/>
-					Facility: <span className="font-semibold">{facility?.name}</span>
+					<Trans
+						i18nKey="facility.deleteDialog.confirm"
+						components={{strong: <span className="font-semibold"/>}}
+						values={{facilityName: facility?.name}}
+					/>
 				</DialogDescription>
 				<DialogFooter>
-					<Button onClick={() => setConfirmDelete(undefined)} variant="secondary">Cancel</Button>
-					<Button onClick={handleDelete} variant="primary">Yes, Delete</Button>
+					<Button onClick={() => setConfirmDelete(undefined)} variant="secondary">
+						{t('common.button.cancel')}
+					</Button>
+					<Button onClick={handleDelete} variant="primary">{t('common.button.delete')}</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

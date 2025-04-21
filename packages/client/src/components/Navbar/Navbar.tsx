@@ -1,34 +1,29 @@
-'use client'
-
+import menuConfig, {type MenuItem} from '@/menuConfig';
 import DesktopMenu from './DesktopMenu';
-import type {MenuItem} from './types';
 import MobileMenu from './MobileMenu';
+import type {NavItem} from '@/components/Navbar/types.ts';
+import {useTranslation} from 'react-i18next';
 
-type Props = {
-	menu?: MenuItem[];
-}
+export default function Navbar() {
+	const {t} = useTranslation();
 
-export default function Navbar({
-	menu = [
-		{title: 'Facilities', url: '/facilities'},
-		{title: 'Locations', url: '/locations'},
-		{title: 'Players', url: '/players'},
-		{title: 'Access Management', url: '/access-management'},
-	],
-}: Props) {
-	const pathSegments = location.href.split('/');
-	const lastSegment = pathSegments[pathSegments.length - 1];
+	const convertToNavigationConfig = (menuConfig: MenuItem[]): NavItem[] => {
+		const visibleItems = menuConfig.filter(item => item.i18nLabel && item.path);
 
-	const menuWithActive: MenuItem[] = menu.map(menuItem => ({
-		...menuItem,
-		isActive: menuItem.url === `/${lastSegment}`,
-	}));
+		return visibleItems.map(item => ({
+			children: item.children && convertToNavigationConfig(item.children),
+			label: t(item.i18nLabel as string),
+			path: item.path as string,
+		}));
+	}
+
+	const menu = convertToNavigationConfig(menuConfig[0].children as MenuItem[]);
 
 	return (
 		<section className="content-center bg-accent fixed min-h-[56px] top-0 w-full z-10">
 			<div className="mx-auto px-2 py-1 max-w-full md:container">
-				<DesktopMenu menu={menuWithActive}/>
-				<MobileMenu menu={menuWithActive}/>
+				<DesktopMenu menu={menu}/>
+				<MobileMenu menu={menu}/>
 			</div>
 		</section>
 	);

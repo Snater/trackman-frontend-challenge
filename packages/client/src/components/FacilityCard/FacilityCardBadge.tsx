@@ -1,6 +1,7 @@
 import {Badge} from '@/components/ui/badge';
 import {WorkingHours} from 'schemas';
 import useCurrentTimeContext from '@/components/CurrentTimeContext';
+import {useTranslation} from 'react-i18next';
 
 /**
  * @param timeString Between `00:00` and `23:59`.
@@ -27,10 +28,13 @@ type Props = {
 }
 
 export default function FacilityCardBadge({workingHours}: Props) {
+	const {t} = useTranslation();
 	const {currentTime} = useCurrentTimeContext();
 	const isOpen = isInWorkingHours(currentTime, workingHours);
 
 	return (
-		<Badge variant={isOpen ? 'open' : 'closed'}/>
+		<Badge variant={isOpen ? 'open' : 'closed'}>
+			{isOpen ? t('facility.card.isOpenBadge.open') : t('facility.card.isOpenBadge.closed')}
+		</Badge>
 	)
 }

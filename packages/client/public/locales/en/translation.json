@@ -1,0 +1,83 @@
+{
+	"common": {
+		"button": {
+			"cancel": "Cancel",
+			"delete": "Yes, Delete"
+		}
+	},
+	"facility": {
+		"card": {
+			"deleteButton": {
+				"label": "Delete"
+			},
+			"isOpenBadge": {
+				"closed": "Closed",
+				"open": "Open"
+			}
+		},
+		"deleteDialog": {
+			"confirm": "Are you sure you want to delete this facility? This action cannot be undone.<br/>Facility: <strong>{{facilityName}}</strong>",
+			"title": "Delete Facility"
+		}
+	},
+	"nav": {
+		"label": {
+			"accessManagement": "Access Management",
+			"facilities": "Facilities",
+			"locations": "Locations",
+			"players": "Players"
+		},
+		"mobile": {
+			"open": "Open navigation menu",
+			"title": "Navigation Menu"
+		}
+	},
+	"page": {
+		"facilities": {
+			"button": {
+				"createFacility": "Create Facility"
+			},
+			"page": {
+				"add": {
+					"title": "Add Facility"
+				},
+				"edit": {
+					"form": {
+						"address": {
+							"label": "Address"
+						},
+						"button": {
+							"create": "Create",
+							"update": "Update"
+						},
+						"closingTime": {
+							"label": "Closing Time"
+						},
+						"coverImageUrl": {
+							"label": "Cover Image URL"
+						},
+						"defaultFacility": {
+							"description": "Setting this facility as default will override the currently marked default facility.",
+							"label": "Default Facility"
+						},
+						"description": {
+							"label": "Description"
+						},
+						"facilityName": {
+							"label": "Facility Name"
+						},
+						"openingTime": {
+							"label": "Opening Time"
+						},
+						"subtitle": {
+							"workingHours": "Working Hours"
+						}
+					},
+					"title": "Edit Facility"
+				}
+			},
+			"title": "Facilities"
+		},
+		"title": "Trackman Front-End Coding Challenge"
+	}
+}

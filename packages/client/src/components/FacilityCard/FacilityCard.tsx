@@ -15,6 +15,7 @@ import DeleteIcon from '@/components/DeleteIcon';
 import type {Facility} from 'schemas';
 import FacilityCardBadge from './FacilityCardBadge';
 import {useNavigate} from 'react-router';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
 	facility: Facility
@@ -22,6 +23,7 @@ type Props = {
 }
 
 export default function FacilityCard({facility, setConfirmDelete}: Props) {
+	const {t} = useTranslation();
 	const navigate = useNavigate();
 
 	return (
@@ -40,7 +42,7 @@ export default function FacilityCard({facility, setConfirmDelete}: Props) {
 					<CardAddress>{facility.address}</CardAddress>
 					<CardActions>
 						<Button
-							aria-label="Delete"
+							aria-label={t('facility.card.deleteButton.label')}
 							onClick={() => {
 								setConfirmDelete(facility);
 							}}

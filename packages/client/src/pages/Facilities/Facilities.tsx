@@ -5,18 +5,22 @@ import FacilityDeleteDialog from '@/components/FacilityDeleteDialog';
 import useFacilitiesContext from '@/components/FacilitiesContext';
 import {useNavigate} from 'react-router';
 import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 
 export default function Facilities() {
+	const {t} = useTranslation();
 	const [confirmDelete, setConfirmDelete] = useState<Facility>();
 	const navigate = useNavigate();
 	const {facilities} = useFacilitiesContext();
 
 	return (
 		<>
-			<h1 className="sr-only">Facilities</h1>
+			<h1 className="sr-only">{t('page.facilities.title')}</h1>
 			<div className="flex flex-col">
 				<div className="flex justify-end">
-					<Button className="w-full sm:w-auto" onClick={() => navigate('add')} variant="primary">Create Facility</Button>
+					<Button className="w-full sm:w-auto" onClick={() => navigate('add')} variant="primary">
+						{t('page.facilities.button.createFacility')}
+					</Button>
 				</div>
 				<div className="grid gap-1.5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 					{

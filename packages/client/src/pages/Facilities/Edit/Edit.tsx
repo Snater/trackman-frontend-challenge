@@ -10,9 +10,11 @@ import FormTextarea from '@/components/FormTextarea';
 import {Input} from '@/components/ui/input';
 import useFacilitiesContext from '@/components/FacilitiesContext';
 import {useForm} from 'react-hook-form';
+import {useTranslation} from 'react-i18next';
 import {zodResolver} from '@hookform/resolvers/zod';
 
 export default function Edit() {
+	const {t} = useTranslation();
 	const navigate = useNavigate();
 	const {id} = useParams();
 	const queryClient = useQueryClient();
@@ -64,7 +66,9 @@ export default function Edit() {
 
 	return (
 		<>
-			<h1>{id ? 'Edit Facility' : 'Add Facility'}</h1>
+			<h1>
+				{id ? t('page.facilities.page.edit.title') : t('page.facilities.page.add.title')}
+			</h1>
 			<Form reset={reset} {...form}>
 				<form
 					className="bg-card rounded-md shadow-xs"
@@ -82,28 +86,44 @@ export default function Edit() {
 						control={form.control}
 						name="name"
 						render={({field}) => (
-							<FormInput field={field} label="Facility Name" required/>
+							<FormInput
+								field={field}
+								label={t('page.facilities.page.edit.form.facilityName.label')}
+								required
+							/>
 						)}
 					/>
 					<FormField
 						control={form.control}
 						name="address"
 						render={({field}) => (
-							<FormInput field={field} label="Address" required/>
+							<FormInput
+								field={field}
+								label={t('page.facilities.page.edit.form.address.label')}
+								required
+							/>
 						)}
 					/>
 					<FormField
 						control={form.control}
 						name="description"
 						render={({field}) => (
-							<FormTextarea field={field} label="Description" required/>
+							<FormTextarea
+								field={field}
+								label={t('page.facilities.page.edit.form.description.label')}
+								required
+							/>
 						)}
 					/>
 					<FormField
 						control={form.control}
 						name="image"
 						render={({field}) => (
-							<FormInput field={field} label="Cover Image URL" required/>
+							<FormInput
+								field={field}
+								label={t('page.facilities.page.edit.form.coverImageUrl.label')}
+								required
+							/>
 						)}
 					/>
 					<FormField
@@ -111,33 +131,49 @@ export default function Edit() {
 						name="isDefault"
 						render={({field}) => (
 							<FormCheckbox
-								description="Setting this facility as default will override the currently marked default facility."
+								description={t('page.facilities.page.edit.form.defaultFacility.description')}
 								disabled={facilities?.length === 0}
 								field={field}
-								label="Default Facility"
+								label={t('page.facilities.page.edit.form.defaultFacility.label')}
 							/>
 						)}
 					/>
-					<h2>Working Hours</h2>
+					<h2>{t('page.facilities.page.edit.form.subtitle.workingHours')}</h2>
 					<div className="flex gap-1.25 mb-1">
 						<FormField
 							control={form.control}
 							name="workingHours.0"
 							render={({field}) => (
-								<FormInput field={field} label="Opening Time" required/>
+								<FormInput
+									field={field}
+									label={t('page.facilities.page.edit.form.openingTime.label')}
+									required
+								/>
 							)}
 						/>
 						<FormField
 							control={form.control}
 							name="workingHours.1"
 							render={({field}) => (
-								<FormInput field={field} label="Closing Time" required/>
+								<FormInput
+									field={field}
+									label={t('page.facilities.page.edit.form.closingTime.label')}
+									required
+								/>
 							)}
 						/>
 					</div>
-					<div className="flex gap-1.25 justify-end">
-						<Button variant="secondary" onClick={() => navigate('/facilities')}>Cancel</Button>
-						<Button type="submit" variant="primary">{id ? 'Update Facility' : 'Create Facility'}</Button>
+					<div className="flex flex-col-reverse gap-1.25 sm:flex-row sm:justify-end">
+						<Button variant="secondary" onClick={() => navigate('/facilities')}>
+							{t('common.button.cancel')}
+						</Button>
+						<Button type="submit" variant="primary">
+							{
+								id
+									? t('page.facilities.page.edit.form.button.update')
+									: t('page.facilities.page.edit.form.button.create')
+							}
+						</Button>
 					</div>
 				</form>
 			</Form>

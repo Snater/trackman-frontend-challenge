@@ -5,10 +5,10 @@ import {
 	NavigationMenuList,
 } from '@/components/ui/navigation-menu';
 import Logo from './Logo';
-import type {MenuItem} from './types';
+import type {NavItem} from './types';
 
 type Props = {
-	menu: MenuItem[]
+	menu: NavItem[]
 }
 
 export default function DesktopMenu({menu}: Props) {
@@ -21,9 +21,9 @@ export default function DesktopMenu({menu}: Props) {
 						<NavigationMenuList>
 							{
 								menu.map((item) => (
-									<NavigationMenuItem key={item.title}>
-										<NavigationMenuLink to={item.url}>
-											{item.title}
+									<NavigationMenuItem key={item.path}>
+										<NavigationMenuLink to={item.path}>
+											{item.label}
 										</NavigationMenuLink>
 									</NavigationMenuItem>
 								))

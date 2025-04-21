@@ -1,5 +1,5 @@
-export type MenuItem = {
-	isActive?: boolean
-	title: string
-	url: string
+export type NavItem = {
+	children?: NavItem[]
+	label: string
+	path: string
 }
