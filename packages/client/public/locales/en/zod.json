@@ -1,0 +1,13 @@
+{
+	"errors": {
+		"invalid_string": {
+			"url": "Invalid URL",
+			"regex": "Invalid"
+		},
+		"too_small": {
+			"string": {
+				"inclusive_one": "Please enter at least {{minimum}} character"
+			}
+		}
+	}
+}

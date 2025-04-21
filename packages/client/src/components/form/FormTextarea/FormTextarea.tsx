@@ -1,4 +1,4 @@
-import {FormControl, FormItem, FormLabel} from '@/components/ui/form';
+import {FormControl, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
 import type {FieldValues} from 'react-hook-form';
 import RequiredIndicator from '@/components/RequiredIndicator';
 import {Textarea} from '@/components/ui/textarea';
@@ -6,7 +6,7 @@ import {Textarea} from '@/components/ui/textarea';
 type Props = {
 	field: FieldValues
 	label: string
-	required: boolean
+	required?: boolean
 }
 
 export default function FormTextarea({field, label, required}: Props) {
@@ -17,8 +17,9 @@ export default function FormTextarea({field, label, required}: Props) {
 				{required && <RequiredIndicator/>}
 			</FormLabel>
 			<FormControl>
-				<Textarea {...required ? {'aria-required': true, required: true}: {}} {...field}/>
+				<Textarea aria-required={required} {...field}/>
 			</FormControl>
+			<FormMessage className="mb-1.5"/>
 		</FormItem>
 	);
 }

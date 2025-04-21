@@ -1,6 +1,7 @@
 {
   "name": "trackman-frontend-challenge",
   "version": "0.0.0",
+  "type": "module",
   "license": "MIT",
   "dependencies": {
     "concurrently": "^9.1.2",

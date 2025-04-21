@@ -9,10 +9,10 @@ export type WorkingHours = z.infer<typeof WorkingHoursSchema>;
 
 export const FacilitySchema = z.object({
 	id: z.string().optional(),
-	name: z.string(),
-	address: z.string(),
-	description: z.string(),
-	image: z.string(),
+	name: z.string().nonempty(),
+	address: z.string().nonempty(),
+	description: z.string().nonempty(),
+	image: z.string().url().nonempty(),
 	workingHours: WorkingHoursSchema,
 	isDefault: z.boolean(),
 });
