@@ -148,6 +148,7 @@ export default function Edit() {
 									field={field}
 									label={t('page.facilities.page.edit.form.openingTime.label')}
 									required
+									type="time"
 								/>
 							)}
 						/>
@@ -159,6 +160,7 @@ export default function Edit() {
 									field={field}
 									label={t('page.facilities.page.edit.form.closingTime.label')}
 									required
+									type="time"
 								/>
 							)}
 						/>

@@ -24,7 +24,7 @@ function FormItem({className, ...props}: ComponentProps<'div'>) {
 		<FormItemContext.Provider value={{id}}>
 			<div
 				data-slot="form-item"
-				className={cn('grid gap-0.25 mb-1', className)}
+				className={cn('content-start grid gap-0.25 mb-1', className)}
 				{...props}
 			/>
 		</FormItemContext.Provider>
