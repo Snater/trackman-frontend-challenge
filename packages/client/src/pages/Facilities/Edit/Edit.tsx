@@ -165,16 +165,16 @@ export default function Edit() {
 							)}
 						/>
 					</div>
-					<div className="flex flex-col-reverse gap-1.25 sm:flex-row sm:justify-end">
-						<Button variant="secondary" onClick={() => navigate('/facilities')}>
-							{t('common.button.cancel')}
-						</Button>
+					<div className="flex flex-col gap-1.25 sm:flex-row-reverse sm:justify-start">
 						<Button type="submit" variant="primary">
 							{
 								id
 									? t('page.facilities.page.edit.form.button.update')
 									: t('page.facilities.page.edit.form.button.create')
 							}
+						</Button>
+						<Button variant="secondary" onClick={() => navigate('/facilities')}>
+							{t('common.button.cancel')}
 						</Button>
 					</div>
 				</form>
