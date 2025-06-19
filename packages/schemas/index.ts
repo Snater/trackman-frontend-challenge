@@ -1,8 +1,8 @@
-import {z} from 'zod';
+import {z} from 'zod/v4';
 
 const WorkingHoursSchema = z.tuple([
-	z.string().regex(/[0-9]{1,2}:[0-9]{2}/).transform(value => value.padStart(5, '0')),
-	z.string().regex(/[0-9]{1,2}:[0-9]{2}/).transform(value => value.padStart(5, '0'))
+	z.iso.time({precision: -1}),
+	z.iso.time({precision: -1}),
 ]);
 
 export type WorkingHours = z.infer<typeof WorkingHoursSchema>;
@@ -12,7 +12,7 @@ export const FacilitySchema = z.object({
 	name: z.string().nonempty(),
 	address: z.string().nonempty(),
 	description: z.string().nonempty(),
-	image: z.string().url().nonempty(),
+	image: z.url().nonempty(),
 	workingHours: WorkingHoursSchema,
 	isDefault: z.boolean(),
 });
