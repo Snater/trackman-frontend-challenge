@@ -1,0 +1,38 @@
+type Query {
+	hello: String
+	facilities: [Facility!]!
+}
+
+type Facility {
+	id: String
+	name: String!
+	address: String!
+	description: String!
+	image: String!
+	workingHours: [String!]!
+	isDefault: Boolean!
+}
+
+input FacilityInput {
+	name: String!
+	address: String!
+	description: String!
+	image: String!
+	workingHours: [String!]!
+	isDefault: Boolean!
+}
+
+input ExistingFacilityInput {
+	id: String!
+	facilityData: FacilityInput
+}
+
+input NewFacilityInput {
+	facilityData: FacilityInput
+}
+
+type Mutation {
+	addFacility(facility: NewFacilityInput!): Facility!
+	updateFacility(facility: ExistingFacilityInput!): Facility!
+	deleteFacility(facilityId: String!): String!
+}

@@ -1,56 +1,122 @@
 [
-	{
-		"id": "1",
-		"name": "Royal Golf Center",
-		"address": "456 Golf Lane, Aarhus, Denmark",
-		"description": "",
-		"image": "/facilities/d6f03936a2a261eb538fc2e4fa6b25dc.jpg",
-		"workingHours": ["00:00", "23:59"],
-		"isDefault": true
-	},
-	{
-		"id": "2",
-		"name": "Green Valley Golf Club",
-		"address": "123 Fairway Drive, Copenhagen, Denmark",
-		"description": "Nestled in the heart of Copenhagen, Green Valley Golf Club offers an 18-hole championship course surrounded by lush greenery and scenic landscapes. With top-tier facilities, a modern clubhouse, and expert coaching programs, it's perfect for both beginners and seasoned golfers.",
-		"image": "/facilities/71413a067c20577b9f298e043fa6070a.jpg",
-		"workingHours": ["00:00", "00:00"],
-		"isDefault": false
-	},
-	{
-		"id": "3",
-		"name": "Nordic Hills Golf Resort",
-		"address": "789 Birdie Street, Odense, Denmark",
-		"description": "",
-		"image": "/facilities/aa9cfcb21a960bf89a050d57ff5e2a1a.jpg",
-		"workingHours": ["09:00", "17:00"],
-		"isDefault": false
-	},
-	{
-		"id": "4",
-		"name": "Blue Lake Golf Club",
-		"address": "101 Par Avenue, Aalborg, Denmark",
-		"description": "",
-		"image": "/facilities/bf8e0ebd052c98e46f4676f5fbbf3d7d.jpg",
-		"workingHours": ["08:00", "20:00"],
-		"isDefault": false
-	},
-	{
-		"id": "5",
-		"name": "Sunset Golf Park",
-		"address": "555 Eagle Way, Esbjerg, Denmark",
-		"description": "",
-		"image": "/facilities/34ac465b40e2322506106627c7a13952.jpg",
-		"workingHours": ["14:00", "18:00"],
-		"isDefault": false
-	},
-	{
-		"id": "6",
-		"name": "Copenhagen Golf Park",
-		"address": "12 Golfvej, Copenhagen, Denmark",
-		"description": "",
-		"image": "/facilities/71413a067c20577b9f298e043fa6070a.jpg",
-		"workingHours": ["03:00", "04:00"],
-		"isDefault": false
-	}
+  {
+    "id": "1",
+    "name": "Royal Golf Center",
+    "address": "456 Golf Lane, Aarhus, Denmark",
+    "description": "",
+    "image": "/facilities/d6f03936a2a261eb538fc2e4fa6b25dc.jpg",
+    "workingHours": [
+      "00:00",
+      "23:59"
+    ],
+    "isDefault": true
+  },
+  {
+    "id": "2",
+    "name": "Green Valley Golf Club",
+    "address": "123 Fairway Drive, Copenhagen, Denmark",
+    "description": "Nestled in the heart of Copenhagen, Green Valley Golf Club offers an 18-hole championship course surrounded by lush greenery and scenic landscapes. With top-tier facilities, a modern clubhouse, and expert coaching programs, it's perfect for both beginners and seasoned golfers.",
+    "image": "/facilities/71413a067c20577b9f298e043fa6070a.jpg",
+    "workingHours": [
+      "00:00",
+      "00:00"
+    ],
+    "isDefault": false
+  },
+  {
+    "id": "3",
+    "name": "Nordic Hills Golf Resort",
+    "address": "789 Birdie Street, Odense, Denmark",
+    "description": "",
+    "image": "/facilities/aa9cfcb21a960bf89a050d57ff5e2a1a.jpg",
+    "workingHours": [
+      "09:00",
+      "17:00"
+    ],
+    "isDefault": false
+  },
+  {
+    "id": "4",
+    "name": "Blue Lake Golf Club",
+    "address": "101 Par Avenue, Aalborg, Denmark",
+    "description": "",
+    "image": "/facilities/bf8e0ebd052c98e46f4676f5fbbf3d7d.jpg",
+    "workingHours": [
+      "08:00",
+      "20:00"
+    ],
+    "isDefault": false
+  },
+  {
+    "id": "5",
+    "name": "Sunset Golf Park",
+    "address": "555 Eagle Way, Esbjerg, Denmark",
+    "description": "",
+    "image": "/facilities/34ac465b40e2322506106627c7a13952.jpg",
+    "workingHours": [
+      "14:00",
+      "18:00"
+    ],
+    "isDefault": false
+  },
+  {
+    "id": "6",
+    "name": "Copenhagen Golf Park",
+    "address": "12 Golfvej, Copenhagen, Denmark",
+    "description": "",
+    "image": "/facilities/71413a067c20577b9f298e043fa6070a.jpg",
+    "workingHours": [
+      "03:00",
+      "04:00"
+    ],
+    "isDefault": false
+  },
+  {
+    "id": "5qoc7m0mc39lnzx",
+    "name": "Royal Golf Center",
+    "address": "123 Fairway Drive, Copenhagen, Denmark",
+    "description": "hfhjnfdgh",
+    "image": "http://localhost:8000",
+    "workingHours": [
+      "15:55",
+      "12:58"
+    ],
+    "isDefault": false
+  },
+  {
+    "name": "Royal Golf Center",
+    "address": "123 Fairway Drive, Copenhagen, Denmark",
+    "description": "bdfghbdfhgdf",
+    "image": "http://localhost:8000",
+    "workingHours": [
+      "13:57",
+      "15:57"
+    ],
+    "isDefault": false,
+    "id": "5qocidwmcacr5yj"
+  },
+  {
+    "name": "Royal Golf Centerdfhgdfhg",
+    "address": "123 Fairway Drive, Copenhagen, Denmark",
+    "description": "bdfghbdfhgdf",
+    "image": "http://localhost:8000",
+    "workingHours": [
+      "13:57",
+      "15:57"
+    ],
+    "isDefault": false,
+    "id": "5qocidwmcacrc37"
+  },
+  {
+    "id": "8sb4bmomcacsxc5",
+    "name": "fghdfghdfhgdfhgdfhg",
+    "address": "12 Golfvej, Copenhagen, Denmark",
+    "description": "dfhgdfhg",
+    "image": "http://localhost:8000",
+    "workingHours": [
+      "13:59",
+      "15:59"
+    ],
+    "isDefault": false
+  }
 ]

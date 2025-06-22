@@ -2,11 +2,14 @@
   "name": "server",
   "version": "0.0.0",
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "start": "npx tsx index.ts"
   },
   "description": "",
   "dependencies": {
+    "@apollo/server": "^4.12.2",
+    "@as-integrations/express5": "^1.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
@@ -15,6 +18,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/node": "^24.0.3",
     "@types/uniqid": "^5.3.4"
   }
 }

@@ -9,8 +9,15 @@ import {
 } from '@/components/ui/dialog';
 import {Dispatch, SetStateAction, useCallback} from 'react';
 import {Trans, useTranslation} from 'react-i18next';
+import {gql, request} from 'graphql-request';
 import {Button} from '@/components/ui/button';
 import type {Facility} from 'schemas';
+
+const deleteFacility = gql`
+	mutation UpdateFacility($facilityId: String!) {
+		deleteFacility(facilityId: $facilityId)
+	}
+`;
 
 type Props = {
 	confirmDelete?: Facility
@@ -23,16 +30,10 @@ export default function FacilityDeleteDialog({confirmDelete: facility, setConfir
 
 	const {mutate} = useMutation<null, DefaultError, string>({
 		mutationFn: async (id) => {
-			await fetch(
-				`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/facility`,
-				{
-					body: JSON.stringify({id}),
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					method: 'DELETE',
-					mode: 'cors',
-				}
+			await request(
+				`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/graphql`,
+				deleteFacility,
+				{facilityId: id},
 			);
 
 			return null;

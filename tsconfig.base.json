@@ -4,9 +4,10 @@
 		"esModuleInterop": true,
 		"isolatedModules": true,
 		"moduleDetection": "force",
-		"moduleResolution": "bundler",
+		"moduleResolution": "node",
 		"noEmit": true,
 		"resolveJsonModule": true,
+		"target": "es2020",
 
 		/* Linting */
 		"strict": true,

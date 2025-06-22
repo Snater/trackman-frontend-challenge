@@ -1,6 +1,7 @@
 import {type DefaultError, useMutation, useQueryClient} from '@tanstack/react-query';
 import {type Facility, FacilitySchema} from 'schemas';
 import {Form, FormField} from '@/components/ui/form';
+import {gql, request} from 'graphql-request';
 import {useEffect, useMemo} from 'react';
 import {useNavigate, useParams} from 'react-router';
 import {Button} from '@/components/ui/button';
@@ -12,6 +13,22 @@ import useFacilitiesContext from '@/components/FacilitiesContext';
 import {useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import {zodResolver} from '@hookform/resolvers/zod';
+
+const addFacility = gql`
+	mutation AddFacility($facility: NewFacilityInput!) {
+		addFacility(facility: $facility) {
+			id
+		}
+	}
+`;
+
+const updateFacility = gql`
+	mutation UpdateFacility($facility: ExistingFacilityInput!) {
+		updateFacility(facility: $facility) {
+			id
+		}
+	}
+`;
 
 export default function Edit() {
 	const {t} = useTranslation();
@@ -44,17 +61,22 @@ export default function Edit() {
 
 	const {mutate} = useMutation<null, DefaultError, Facility>({
 		mutationFn: async (values) => {
-			await fetch(
-				`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/facility`,
-				{
-					body: JSON.stringify({...values}),
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					method: 'POST',
-					mode: 'cors',
-				}
-			);
+
+			const facilityData = Object.fromEntries(Object.entries(values).filter(v => v[0] !== 'id'));
+
+			if (values.id) {
+				await request(
+					`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/graphql`,
+					updateFacility,
+					{facility: {id: values.id, facilityData}}
+				);
+			} else {
+				await request(
+					`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/graphql`,
+					addFacility,
+					{facility: {facilityData}}
+				);
+			}
 
 			return null;
 		},
