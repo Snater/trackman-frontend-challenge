@@ -1,8 +1,7 @@
-import {type DefaultError, useMutation, useQueryClient} from '@tanstack/react-query';
 import {type Facility, FacilitySchema} from 'schemas';
 import {Form, FormField} from '@/components/ui/form';
-import {gql, request} from 'graphql-request';
-import {useEffect, useMemo} from 'react';
+import {gql, useMutation} from '@apollo/client';
+import {useCallback, useEffect, useMemo} from 'react';
 import {useNavigate, useParams} from 'react-router';
 import {Button} from '@/components/ui/button';
 import FormInput from '@/components/form/FormInput';
@@ -14,7 +13,7 @@ import {useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import {zodResolver} from '@hookform/resolvers/zod';
 
-const addFacility = gql`
+const ADD_FACILITY = gql`
 	mutation AddFacility($facility: NewFacilityInput!) {
 		addFacility(facility: $facility) {
 			id
@@ -22,7 +21,7 @@ const addFacility = gql`
 	}
 `;
 
-const updateFacility = gql`
+const UPDATE_FACILITY = gql`
 	mutation UpdateFacility($facility: ExistingFacilityInput!) {
 		updateFacility(facility: $facility) {
 			id
@@ -34,7 +33,6 @@ export default function Edit() {
 	const {t} = useTranslation();
 	const navigate = useNavigate();
 	const {id} = useParams();
-	const queryClient = useQueryClient();
 	const {facilities} = useFacilitiesContext();
 	const facility = facilities?.filter(facility => facility.id === id)[0];
 
@@ -59,32 +57,20 @@ export default function Edit() {
 		}
 	}, [defaultValues, facilities, reset]);
 
-	const {mutate} = useMutation<null, DefaultError, Facility>({
-		mutationFn: async (values) => {
+	const [addFacility] = useMutation(ADD_FACILITY);
+	const [updateFacility] = useMutation(UPDATE_FACILITY);
 
-			const facilityData = Object.fromEntries(Object.entries(values).filter(v => v[0] !== 'id'));
+	const mutate = useCallback(async (values: Facility) => {
+		const facilityData = Object.fromEntries(Object.entries(values).filter(v => v[0] !== 'id'));
 
-			if (values.id) {
-				await request(
-					`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/graphql`,
-					updateFacility,
-					{facility: {id: values.id, facilityData}}
-				);
-			} else {
-				await request(
-					`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/graphql`,
-					addFacility,
-					{facility: {facilityData}}
-				);
-			}
+		if (values.id) {
+			await updateFacility({variables: {facility: {id: values.id, facilityData}}});
+		} else {
+			await addFacility({variables: {facility: {facilityData}}});
+		}
 
-			return null;
-		},
-		onSuccess: async () => {
-			await queryClient.refetchQueries({queryKey: ['facilities']});
-			navigate('/facilities');
-		},
-	});
+		navigate('/facilities');
+	}, [addFacility, navigate, updateFacility]);
 
 	return (
 		<>

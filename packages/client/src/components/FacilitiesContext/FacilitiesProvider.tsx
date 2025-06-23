@@ -1,12 +1,11 @@
 import FacilitiesContext from './FacilitiesContext';
-import {gql, request} from 'graphql-request';
+import {gql, useQuery} from '@apollo/client';
 import type {Facility} from 'schemas';
 import {PropsWithChildren} from 'react';
-import {useQuery} from '@tanstack/react-query';
 
 type Props = PropsWithChildren
 
-const allFacilities = gql`
+const ALL_FACILITIES = gql`
 	query AllFacilities {
 		facilities {
 			address
@@ -21,19 +20,10 @@ const allFacilities = gql`
 `;
 
 export default function FacilitiesProvider({children}: Props) {
-	const {data} = useQuery<Facility[]>({
-		queryKey: ['facilities'],
-		queryFn: async (): Promise<Facility[]> => {
-			const response = await request<{facilities: Facility[]}>(
-				`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/graphql`,
-				allFacilities
-			);
-			return response.facilities;
-		},
-	});
+	const {data} = useQuery<{facilities: Facility[]}>(ALL_FACILITIES);
 
 	return (
-		<FacilitiesContext.Provider value={{facilities: data}}>
+		<FacilitiesContext.Provider value={{facilities: data?.facilities}}>
 			{children}
 		</FacilitiesContext.Provider>
 	);

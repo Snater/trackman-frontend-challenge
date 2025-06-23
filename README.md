@@ -26,7 +26,7 @@ Among others:
 - Supported by [shadcn/ui](https://ui.shadcn.com/) / [Radix](https://www.radix-ui.com/). (The components in `/packages/client/src/components/ui` were pulled in and customized.
 - I18n with [react-i18next](https://react.i18next.com/).
 - Routing per [React Router](https://reactrouter.com/).
-- Querying and mutating using [TanStack Query](https://tanstack.com/query/).
+- Querying and mutating using [Apollo GraphQL Server and Client](https://www.apollographql.com/developers).
 - Form processing per [React Hook Form](https://www.react-hook-form.com/).
 - Front-end and back-end validation using shared [Zod](https://zod.dev/) schema.
 - Back-end server implemented with [Express](https://expressjs.com/).
@@ -36,7 +36,7 @@ Among others:
 
 ## Some more things I would have liked to do
 
-- Batch fetching of the facilities with `useInfiniteQuery`. The default facility id needs to be kept along the query key and sent to the server along the query as the default facility could be changed while stepping through the infinite query, potentially resulting in duplicated/missing facilities. To prevent a double fetch of the first batch, there would need to be a separate endpoint/query to just retrieve the current default facility id, which is then passed to the infinite query fetching all facilities.
+- Paginated fetching of the facilities. The default facility id needs to be kept along the query key and sent to the server along the query as the default facility could be changed while stepping through the infinite query, potentially resulting in duplicated/missing facilities. To prevent a double fetch of the first batch, there would need to be a separate endpoint/query to just retrieve the current default facility id, which is then passed to the infinite query fetching all facilities.
 - Proper server-side error handling/responses.
 - Adding tests. Though there are no very complex components, which makes functional tests not too interesting. End-to-end tests would be nicer.
 - Setting up Storybook.

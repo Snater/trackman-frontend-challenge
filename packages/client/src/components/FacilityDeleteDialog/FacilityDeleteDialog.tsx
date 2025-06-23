@@ -1,4 +1,3 @@
-import {type DefaultError, useMutation, useQueryClient} from '@tanstack/react-query';
 import {
 	Dialog,
 	DialogContent,
@@ -9,11 +8,11 @@ import {
 } from '@/components/ui/dialog';
 import {Dispatch, SetStateAction, useCallback} from 'react';
 import {Trans, useTranslation} from 'react-i18next';
-import {gql, request} from 'graphql-request';
+import {gql, useMutation} from '@apollo/client';
 import {Button} from '@/components/ui/button';
 import type {Facility} from 'schemas';
 
-const deleteFacility = gql`
+const DELETE_FACILITY = gql`
 	mutation UpdateFacility($facilityId: String!) {
 		deleteFacility(facilityId: $facilityId)
 	}
@@ -26,23 +25,7 @@ type Props = {
 
 export default function FacilityDeleteDialog({confirmDelete: facility, setConfirmDelete}: Props) {
 	const {t} = useTranslation();
-	const queryClient = useQueryClient();
-
-	const {mutate} = useMutation<null, DefaultError, string>({
-		mutationFn: async (id) => {
-			await request(
-				`http://${import.meta.env.VITE_HOSTNAME}:${import.meta.env.VITE_PORT}/graphql`,
-				deleteFacility,
-				{facilityId: id},
-			);
-
-			return null;
-		},
-		onSuccess: () => {
-			queryClient.refetchQueries({queryKey: ['facilities']});
-			setConfirmDelete(undefined);
-		},
-	});
+	const [deleteFacility] = useMutation(DELETE_FACILITY, {refetchQueries: ['AllFacilities']});
 
 	const handleOpenChange = (open: boolean) => {
 		if (!open) {
@@ -50,13 +33,15 @@ export default function FacilityDeleteDialog({confirmDelete: facility, setConfir
 		}
 	}
 
-	const handleDelete = useCallback(() => {
+	const handleDelete = useCallback(async () => {
 		if (!facility?.id) {
 			return;
 		}
 
-		mutate(facility.id);
-	}, [facility, mutate]);
+		await deleteFacility({variables: {facilityId: facility.id}});
+
+		setConfirmDelete(undefined);
+	}, [deleteFacility, facility, setConfirmDelete]);
 
 	return (
 		<Dialog open={facility !== undefined} onOpenChange={handleOpenChange}>
