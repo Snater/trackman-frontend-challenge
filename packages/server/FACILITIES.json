@@ -70,53 +70,5 @@
       "04:00"
     ],
     "isDefault": false
-  },
-  {
-    "id": "5qoc7m0mc39lnzx",
-    "name": "Royal Golf Center",
-    "address": "123 Fairway Drive, Copenhagen, Denmark",
-    "description": "hfhjnfdgh",
-    "image": "http://localhost:8000",
-    "workingHours": [
-      "15:55",
-      "12:58"
-    ],
-    "isDefault": false
-  },
-  {
-    "name": "Royal Golf Center",
-    "address": "123 Fairway Drive, Copenhagen, Denmark",
-    "description": "bdfghbdfhgdf",
-    "image": "http://localhost:8000",
-    "workingHours": [
-      "13:57",
-      "15:57"
-    ],
-    "isDefault": false,
-    "id": "5qocidwmcacr5yj"
-  },
-  {
-    "name": "Royal Golf Centerdfhgdfhg",
-    "address": "123 Fairway Drive, Copenhagen, Denmark",
-    "description": "bdfghbdfhgdf",
-    "image": "http://localhost:8000",
-    "workingHours": [
-      "13:57",
-      "15:57"
-    ],
-    "isDefault": false,
-    "id": "5qocidwmcacrc37"
-  },
-  {
-    "id": "8sb4bmomcacsxc5",
-    "name": "fghdfghdfhgdfhgdfhg",
-    "address": "12 Golfvej, Copenhagen, Denmark",
-    "description": "dfhgdfhg",
-    "image": "http://localhost:8000",
-    "workingHours": [
-      "13:59",
-      "15:59"
-    ],
-    "isDefault": false
   }
 ]
