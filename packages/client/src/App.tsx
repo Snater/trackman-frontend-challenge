@@ -1,6 +1,5 @@
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 import {CurrentTimeProvider} from '@/components/CurrentTimeContext';
-import {FacilitiesProvider} from '@/components/FacilitiesContext';
 import {Helmet} from '@dr.pogodin/react-helmet';
 import Navbar from '@/components/Navbar';
 import menuConfig from '@/menuConfig.tsx';
@@ -27,10 +26,8 @@ function App() {
 			</Helmet>
 			<ApolloProvider client={client}>
 				<CurrentTimeProvider>
-					<FacilitiesProvider>
-						<Navbar/>
-						{routes}
-					</FacilitiesProvider>
+					<Navbar/>
+					{routes}
 				</CurrentTimeProvider>
 			</ApolloProvider>
 		</>

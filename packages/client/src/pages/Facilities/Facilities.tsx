@@ -1,17 +1,29 @@
-import FacilityCard, {FacilityCardSkeleton} from '@/components/FacilityCard';
+import {FacilitiesGrid, FacilitiesGridContainer} from '@/components/FacilitiesGrid';
+import {Suspense, useState} from 'react';
 import {Button} from '@/components/ui/button';
 import type {Facility} from 'schemas';
+import {FacilityCardSkeleton} from '@/components/FacilityCard';
 import FacilityDeleteDialog from '@/components/FacilityDeleteDialog';
-import useFacilitiesContext from '@/components/FacilitiesContext';
 import {useNavigate} from 'react-router';
-import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 
 export default function Facilities() {
 	const {t} = useTranslation();
 	const [confirmDelete, setConfirmDelete] = useState<Facility>();
 	const navigate = useNavigate();
-	const {facilities} = useFacilitiesContext();
+
+	const fallback = (
+		<FacilitiesGridContainer>
+			{
+				[...Array(8)].map((_, i) => (
+					<FacilityCardSkeleton
+						className="nth-[n+4]:hidden md:nth-[n]:flex md:nth-[n+5]:hidden lg:nth-[n]:flex lg:nth-[n+7]:hidden 2xl:nth-[n]:flex"
+						key={i}
+					/>
+				))
+			}
+		</FacilitiesGridContainer>
+	);
 
 	return (
 		<>
@@ -22,38 +34,10 @@ export default function Facilities() {
 						{t('page.facilities.button.createFacility')}
 					</Button>
 				</div>
-				{
-					facilities && facilities.length === 0 && (
-						<div className="mt-12 text-center w-full">{t('page.facilities.empty')}</div>
-					)
-				}
-				{
-					!facilities || facilities.length > 0 && (
-						<div className="grid gap-1.5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-							{
-								facilities
-									? (
-										facilities.map(facility => (
-											<FacilityCard
-												facility={facility as Facility}
-												key={facility.id}
-												setConfirmDelete={setConfirmDelete}
-											/>
-										))
-									)
-									: (
-										[...Array(8)].map((_, i) => (
-											<FacilityCardSkeleton
-												className="nth-[n+4]:hidden md:nth-[n]:flex md:nth-[n+5]:hidden lg:nth-[n]:flex lg:nth-[n+7]:hidden 2xl:nth-[n]:flex"
-												key={i}
-											/>
-										))
-									)
-							}
-						</div>
-					)
-				}
-				</div>
+				<Suspense fallback={fallback}>
+					<FacilitiesGrid setConfirmDelete={setConfirmDelete}/>
+				</Suspense>
+			</div>
 			<FacilityDeleteDialog confirmDelete={confirmDelete} setConfirmDelete={setConfirmDelete}/>
 		</>
 	);
