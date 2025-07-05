@@ -177,7 +177,7 @@ export default function EditForm() {
 								: t('page.facilities.page.edit.form.button.create')
 						}
 					</Button>
-					<Button variant="secondary" onClick={() => navigate('/facilities')}>
+					<Button onClick={() => navigate('/facilities')} type="button" variant="secondary">
 						{t('common.button.cancel')}
 					</Button>
 				</div>
